@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>루프 애니메이션</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #000;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        const box = document.querySelector('.box');
+        let leftPosition = 0;
+        let direction = 1; // 이동 방향: 1은 오른쪽, -1은 왼쪽
+
+        function moveBox() {
+            leftPosition += 5 * direction;
+
+            // 상자가 300px에 도달하면 방향을 반대로 변경
+            if (leftPosition >= 300 || leftPosition <= 0) {
+                direction *= -1; // 방향 반전
+            }
+
+            box.style.left = leftPosition + 'px';
+            requestAnimationFrame(moveBox); // 다음 프레임 요청
+        }
+
+        moveBox(); // 애니메이션 시작
+    </script>
+</body>
+</html>
